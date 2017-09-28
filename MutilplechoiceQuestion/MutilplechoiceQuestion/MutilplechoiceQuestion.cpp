@@ -122,14 +122,14 @@ int main()
 	vQuad_Pts.push_back(Point2f(0, quad.rows));
 	Mat tranMtx = getPerspectiveTransform(vCorners, vQuad_Pts);
 	warpPerspective(img2, quad, tranMtx, quad.size());
-	//imshow("After", quad);
+	imshow("After", quad);
 	Mat cImg;
 	Mat cImgBinary;
 	cvtColor(quad, cImg, CV_BGR2GRAY);
 	//imshow("After", quad);
 	adaptiveThreshold(cImg, cImgBinary, 255, CV_ADAPTIVE_THRESH_MEAN_C, CV_THRESH_BINARY, 75, 10);
 	vector<Vec3f> circles;
-	imshow("After", cImg);
+	//imshow("After", cImg);
 	HoughCircles(cImg, circles, CV_HOUGH_GRADIENT, 1, cImg.rows / 8, 75, 60);
 	sort(circles.begin(), circles.end(), comparatorCircleY);
 	for (size_t i = 0; i < circles.size(); i++) {
